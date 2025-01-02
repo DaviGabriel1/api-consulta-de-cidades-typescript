@@ -1,0 +1,22 @@
+{
+  "name": "api-cidades-typescript",
+  "version": "1.0.0",
+  "description": "api com endpoints para busca de cidades",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaviGabriel1/api-consulta-de-cidades-typescript.git"
+  },
+  "author": "Davi Gabriel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaviGabriel1/api-consulta-de-cidades-typescript/issues"
+  },
+  "homepage": "https://github.com/DaviGabriel1/api-consulta-de-cidades-typescript#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
