@@ -1,5 +1,10 @@
 import server from './server/Server';
+import {config} from "dotenv";
 
-server.listen(3333,()=>{
-    console.log("rodando");
+config();
+
+const port = process.env.PORT || 3333
+
+server.listen(port,()=>{
+    console.log(`"servidor rodando na porta ${port}...`);
 });
