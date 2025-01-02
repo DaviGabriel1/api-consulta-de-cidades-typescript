@@ -19,7 +19,8 @@
   "homepage": "https://github.com/DaviGabriel1/api-consulta-de-cidades-typescript#readme",
   "dependencies": {
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
