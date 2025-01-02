@@ -1,17 +1,13 @@
 import {Router} from "express";
 
+import {CidadesController} from './../controllers';
+
 const router = Router();
 
 router.get("/",(req,res)=>{
     res.send("inicio");
 })
 
-router.post("/teste/:id",(req,res)=>{
-    console.log(req.params.id)
-    console.log(req.cookies)
-    console.log(req.query);
-    console.log(req.body);
-    res.json({message: "processado."});
-})
+router.post("/cidades",CidadesController.create)
 
 export {router};
