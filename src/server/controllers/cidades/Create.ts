@@ -1,4 +1,4 @@
-import {Request, Response} from "express"
+import {Request, RequestHandler, Response} from "express"
 import * as yup from "yup";
 
 interface ICidade{
@@ -10,14 +10,13 @@ const bodyValidation: yup.Schema<ICidade> = yup.object({
     nome: yup.string().required().min(3),
     estado: yup.string().required(),
   }).required();
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export const create = async (req:Request<{},{},ICidade>,res:Response) => { //request está com o body tipado
+
+
+export const createBodyValidator:RequestHandler = async (req,res,next) =>{
     
-    let validatedData: ICidade | undefined = undefined;
-
     try{
-        validatedData = await bodyValidation.validate(req.body,{abortEarly:false}) //não aborta ao encontrar o primeiro erro
-
+        await bodyValidation.validate(req.body,{abortEarly:false}) //não aborta ao encontrar o primeiro erro
+        return next();
     }catch(error){
         const yupError = error as yup.ValidationError;
         const errors: Record<string,string>  = {};
@@ -32,7 +31,11 @@ export const create = async (req:Request<{},{},ICidade>,res:Response) => { //req
         })
         return;
     }
-    console.log(validatedData);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export const create = async (req:Request<{},{},ICidade>,res:Response) => { //request está com o body tipado
+    console.log(req.body);
 
     res.send("create");
     return;
