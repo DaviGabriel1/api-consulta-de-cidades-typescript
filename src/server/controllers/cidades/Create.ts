@@ -16,12 +16,19 @@ export const create = async (req:Request<{},{},ICidade>,res:Response) => { //req
     let validatedData: ICidade | undefined = undefined;
 
     try{
-        validatedData = await bodyValidation.validate(req.body)
+        validatedData = await bodyValidation.validate(req.body,{abortEarly:false}) //não aborta ao encontrar o primeiro erro
 
     }catch(error){
         const yupError = error as yup.ValidationError;
-        res.json({
-            error:yupError.message
+        const errors: Record<string,string>  = {};
+
+        yupError.inner.forEach(error=> {
+            if(error.path === undefined) return;
+
+            errors[error.path] = error.message
+        });
+        res.status(400).json({
+            errors
         })
         return;
     }
